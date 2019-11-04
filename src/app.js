@@ -3,10 +3,11 @@ const redis = require("redis");
 
 const app = express();
 const client = redis.createClient();
+client.set("visits", 0);
 
 app.get("/", (req, res) => {
   client.get("visits", (err, visits) => {
-    res.send(`Number of visists ${visists}`);
+    res.send(`Number of visits ${visits}`);
     client.set("visists", parseInt(visits) + 1);
   });
 });
